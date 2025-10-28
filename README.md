@@ -79,23 +79,23 @@ b4com_checkup/
 
 Скрипт отслеживает более 15 ключевых показателей:
 
-| Метрика           | Описание                             | Пороговое значение               |
-|-------------------|--------------------------------------|----------------------------------|
-| CPU               | Загрузка процессора                  | Load Average ≤ 50%, Ядра ≤ 80%   |
-| Memory            | Использование памяти                 | Свободно ≥ 20%                   |
-| Access Interfaces | VXLAN интерфейсы                     | ≤ 14500                          |
-| MAC VRF           | Виртуальные маршрутизаторы           | ≤ 2000                           |
-| IRB Interfaces    | Integrated Routing and Bridging      | ≤ 2000                           |
-| L2VNI             | Layer 2 VNI                          | ≤ 4000                           |
-| L3 SVI            | Switched Virtual Interfaces          | ≤ 4030                           |
-| IP VRF            | IP Virtual Routing                   | ≤ 500                            |
-| EVPN Routes Count | MAC-only, MAC-IPv4/v6                | ≤ 80% от лимита                  |
-| ASIC MAC          | MAC-адреса в ASIC                    | ≤ 80% от лимита                  |
-| ES LAG            | EVPN Multihoming сессии              | ≤ 1800                           |
-| ARP Entries       | ARP записи                           | ≤ 144K                           |
-| IPv4 Routes       | Маршруты IPv4                        | ≤ 32K                            |
-| ECMP Groups       | ECMP группы                          | ≤ 80% от лимита                  |
-| L3 Nexthops       | Next-hop записи                      | ≤ 80% от лимита                  |
+| Метрика           | Описание                             |
+|-------------------|--------------------------------------|
+| CPU               | Загрузка процессора                  |
+| Memory            | Использование памяти                 |
+| Access Interfaces | VXLAN интерфейсы                     |
+| MAC VRF           | Виртуальные маршрутизаторы           |
+| IRB Interfaces    | Integrated Routing and Bridging      |
+| L2VNI             | Layer 2 VNI                          |
+| L3 SVI            | Switched Virtual Interfaces          |
+| IP VRF            | IP Virtual Routing                   |
+| EVPN Routes Count | MAC-only, MAC-IPv4/v6                |
+| ASIC MAC          | MAC-адреса в ASIC                    |
+| ES LAG            | EVPN Multihoming сессии              |
+| ARP Entries       | ARP записи                           |
+| IPv4 Routes       | Маршруты IPv4                        |
+| ECMP Groups       | ECMP группы                          |
+| L3 Nexthops       | Next-hop записи                      |
 
 ```aiignore
 ⚠️ ВНИМАНИЕ: Пороговые значения зависят от топологии и дизайна сети.
