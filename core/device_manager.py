@@ -114,7 +114,14 @@ class DeviceManager:
 
     def _extract_hostname(self, content: str, ip_address: str) -> str:
         """Извлекает hostname из вывода команд"""
-        hostname_match = re.search(r'Command 1: show hostname\s+(\S+)', content)
+
+        # Новый вариант
+        cfg_hostname = re.search(r'^\s*hostname\s+(\S+)', content, re.MULTILINE)
+        if cfg_hostname:
+            return cfg_hostname.group(1)
+
+        # 2) Старый вариант
+        hostname_match = re.search(r'Command \d+:\s*show hostname\s+(\S+)', content)
         if hostname_match:
             return hostname_match.group(1)
 
@@ -123,9 +130,13 @@ class DeviceManager:
             if clean_line and not clean_line.startswith('Command'):
                 parts = clean_line.split()
                 if parts and not parts[0].startswith('#'):
+                    # если строка начинается с "hostname", берём второе слово
+                    if parts[0].lower() == 'hostname' and len(parts) >= 2:
+                        return parts[1]
                     return parts[0]
 
         return f"{ip_address}_Unknown"
+
 
     def _log_error(self, ip_address: str, error: str):
         """Логирует ошибки"""

@@ -4,7 +4,7 @@
 
 # Базовые команды для всех устройств
 BASE_COMMANDS = [
-    "show hostname",
+    "show run | i hostname",
     "term no mon",
     "terminal length 0",
     "show version | i Image Filename",

@@ -37,9 +37,16 @@ class DeviceParser:
         """Извлекает базовую информацию (hostname, версия)"""
         result = {}
 
-        # Hostname
-        hostname_match = re.search(r'Command 1: show hostname\s+(\S+)', content)
-        result['hostname'] = hostname_match.group(1) if hostname_match else 'Unknown'
+        # 1) Новый вариант — вывод команды "show run | i hostname"
+        cfg_hostname = re.search(r'^\s*hostname\s+(\S+)', content, re.MULTILINE)
+        if cfg_hostname:
+            hostname = cfg_hostname.group(1)
+        else:
+            # 2) Старый вариант — вывод команды "show hostname"
+            hostname_match = re.search(r'Command \d+:\s*show hostname\s+(\S+)', content)
+            hostname = hostname_match.group(1) if hostname_match else 'Unknown'
+
+        result['hostname'] = hostname
 
         # Software version
         software_match = re.search(r'Command 4: show version \| i Image Filename\s*Image Filename:\s*([^\n]+)', content)
